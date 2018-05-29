@@ -1,0 +1,25 @@
+Parameter value            Name of variable          Description
+
+159.4507                         <gloncent> ; gal. long. (or RA) at centre [deg]
+-19.8196                         <glatcent> ; gal. lat. (or Dec) at centre [deg]
+0.25 0.25                        <fieldsize>; field of view dimensions [deg]
+4.                               <pixel>    ; output sampling interval [arcsec]
+10.                              <dilution> ; a priori dilution 
+10000                            <maxiterat>; max no. of integration steps
+100.                             <distance> ; [pc]
+0.1                              <kappa300> ; reference opacity [cm^2/g]
+2.                               <beta>     ; opacity law index
+40                               <ncells>   ; nominal size of subfield
+20                               <noverlap> ; size of subfield overlap
+12                               <Nt>       ; number of temperatures
+7. 25.                           <temprange>; range of temperatures [K]
+6                                <nbands>   ; number of bands
+70. 100., 160. 250. 350. 500.    <wavelen>  ; wavelengths [microns]
+10.  12.   76. 123. 103.  53.    <sigobs>   ; measurement noise values [MJy/sr]
+                                 <obsimages>; list of FITS files follows:
+testimage_070.fits
+testimage_100.fits
+testimage_160.fits
+testimage_250.fits
+testimage_350.fits
+testimage_500.fits
