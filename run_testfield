@@ -1,0 +1,16 @@
+chmod u=rwx *.sh
+qsub testfield-01.sh                         
+qsub testfield-02.sh                         
+qsub testfield-03.sh                         
+qsub testfield-04.sh                         
+qsub testfield-05.sh                         
+qsub testfield-06.sh                         
+qsub testfield-07.sh                         
+qsub testfield-08.sh                         
+qsub testfield-09.sh                         
+qsub testfield-10.sh                         
+qsub testfield-11.sh                         
+qsub testfield-12.sh                         
+qsub testfield-13.sh                         
+qsub testfield-14.sh                         
+qsub testfield-15.sh                         

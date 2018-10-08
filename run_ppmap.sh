@@ -7,7 +7,6 @@
 #SBATCH -n 40
 #SBATCH --exclusive
 
-
 # latest intel compilers, mkl and intel-mpi
 
 module purge
