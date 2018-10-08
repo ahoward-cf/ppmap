@@ -1,0 +1,2 @@
+module load intel/intel
+ifort -O3 -g -traceback -check all -fp-stack-check -o ppmap ppmap.f90 hpcorr.f90 ppmosaic.f90 pperr.f90 convol.f90 inversep.f90 nmedian.f90 trimavg.f90 refmodelcalc.f90 planckfn.f90 tau2mass.f90 intrp2.f radec2pix.f90 pixcrot.f90 removeblanks.f90 readheader.f readheader3d.f readheader4d.f readimage_basic.f readimage_wcs.f readimage3d.f readrho.f writerho.f writeimage2d.f matmul_omp.f90 -fopenmp -L. -lcfitsio

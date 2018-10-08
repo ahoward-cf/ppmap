@@ -1,0 +1,3 @@
+module load compiler/intel
+ifort -O3 -o ppmap matmul_omp.f90 ppmap.f90 hpcorr.f90 rchisqindcalc.f90 ppmosaic.f90 pperr.f90 convol.f90 inversep.f90 nmedian.f90 trimavg.f90 refmodelcalc.f90 planckfn.f90 tau2mass.f90 intrp2.f radec2pix.f90 pixcrot.f90 removeblanks.f90 readheader.f readheader3d.f readheader4d.f readimage_basic.f readimage_wcs.f readimage3d.f readrho.f writerho.f writeimage2d.f -fopenmp -L. -lcfitsio
+cp ppmap ..

@@ -1,0 +1,27 @@
+Parameter value            Name of variable          Description
+
+64.91659581                      <gloncent> ; gal. long. (or RA) at centre [deg]
+27.59684369                      <glatcent> ; gal. lat. (or Dec) at centre [deg]
+2.0 1.5                          <fieldsize>; field of view dimensions [deg]
+6.                               <pixel>    ; output sampling interval [arcsec]
+0.3                              <dilution> ; a priori dilution 
+10000                             <maxiterat>; max no. of integration steps
+140.                             <distance> ; [pc]
+0.1                              <kappa300> ; reference opacity [cm^2/g]
+4                                <nbeta>    ; number of opacity law index values
+1.0 1.5 2.0 2.5                  <betagrid> ; opacity law index values
+2. 0.25                          <betaprior>; a priori mean and sigma of beta
+40                               <ncells>   ; nominal size of subfield
+20                               <noverlap> ; size of subfield overlap
+colourcorr_beta2_scuba850.txt             <ccfile>   ; colour correction table
+12                               <Nt>       ; number of temperatures
+7. 40.                           <temprange>; range of temperatures [K]
+5                                <nbands>   ; number of bands
+70. 160. 250. 350. 500.          <wavelen>  ; wavelengths [microns]
+5.84 3.91 1.31 0.73 0.49         <sigobs>
+                                 <obsimages>; list of FITS files follows:
+Mod_L1495_0070_Obs.fits
+Mod_L1495_0160_Obs.fits
+Mod_L1495_0250_Obs.fits
+Mod_L1495_0350_Obs.fits
+Mod_L1495_0500_Obs.fits
