@@ -37,6 +37,8 @@
         integer(4),allocatable :: counter(:,:), psfsizes(:)
         integer(4),allocatable :: ilo(:), ihi(:), jlo(:), jhi(:)
         integer(4),allocatable :: seq(:,:),set(:)
+        integer                :: nsubxmid, nsubymid, nxmid, nymid
+        integer                :: nsubxmidlo, nsubymidlo, ilostart, jlostart
 
         character(len=80)      :: imagefile,outfile,outscript
         character(len=80)      :: line,removeblanks,tform,string
@@ -516,6 +518,35 @@
         if (noverlap /= 0) then 
 	    call divider(nx,ny,ncells,ncellsbest,noverlap,nnodes, &
                 nsubx,nsuby)
+                
+            if (mod(nsubx,2) == 0) then
+            nsubx = nsubx + 1
+            endif
+            if (mod(nsuby,2) == 0) then
+            nsuby = nsuby + 1
+            endif
+            
+            nsubxmid = ceiling(nsubx / 2)
+            nsubymid = ceiling(nsuby / 2)
+            
+            nxmid = ceiling(nx / 2)
+            nymid = ceiling(ny / 2)
+            
+            nsubxmidlo = nxmid - floor(ncellsbest / 2)
+            nsubymidlo = nymid - floor(ncellsbest / 2)
+            
+            ilostart = nsubxmidlo - (floor(nsubx/2) * (ncellsbest - noverlap))
+            jlostart = nsubymidlo - (floor(nsuby/2) * (ncellsbest - noverlap))
+            
+            do while (ilostart < 0)
+            ilostart = ilostart + ncellsbest
+            nsubx = nsubx - 2
+            enddo
+            do while (jlostart < 0)
+            jlostart = jlostart + ncellsbest
+            nsuby = nsuby - 2
+            enddo
+            
             nfields = nsubx*nsuby
             allocate (ilo(nfields))
             allocate (ihi(nfields))
@@ -531,6 +562,11 @@
                 jhi(ii+1) = jlo(ii+1) + ncellsbest - 1
             enddo
             enddo
+
+            ilo = ilo + ilostart
+            ihi = ihi + ilostart
+            jlo = jlo + jlostart
+            jhi = jhi + jlostart
 
             nperlist = (nsubx*nsuby)/nnodes
             if (mod((nsubx*nsuby),nnodes) /= 0) nperlist = nperlist + 1
@@ -666,21 +702,21 @@
 	            if (index(line,'run_ppmap.log') /= 0) then
 		        write(line,'(a,"-",i2.2,".log")') fieldname,n
                         line = removeblanks(line)
-                        write(2,'(a)') '#SBATCH -o '//line(1:40)
+                        write(2,'(a)') '#PBS -o '//line(1:40)
                         isl = isl + 1
-                        scriptlines(isl,n) = '#SBATCH -o '//line(1:40)
+                        scriptlines(isl,n) = '#PBS -o '//line(1:40)
 	            else if (index(line,'run_ppmap.err') /= 0) then 
 		        write(line,'(a,"-",i2.2,".err")') fieldname,n
                         line = removeblanks(line)
-                        write(2,'(a)') '#SBATCH -e '//line(1:40)
+                        write(2,'(a)') '#PBS -e '//line(1:40)
                         isl = isl + 1
-                        scriptlines(isl,n) = '#SBATCH -e '//line(1:40)
-	            else if (index(line,'--job-name=run') /= 0) then 
+                        scriptlines(isl,n) = '#PBS -e '//line(1:40)
+	            else if (index(line,'-N run') /= 0) then 
 		        write(line,'(a,"-",i2.2)') fieldname,n
                         line = removeblanks(line)
-                        write(2,'(a)') '#SBATCH --job-name='//line(1:40)
+                        write(2,'(a)') '#PBS -N '//line(1:40)
                         isl = isl + 1
-                        scriptlines(isl,n) = '#SBATCH --job-name='//line(1:40)
+                        scriptlines(isl,n) = '#PBS -N '//line(1:40)
 	            else if (index(line,'${code}') /= 0) then 
 		        if (isf2+1==nfields) then 
 		            write(2,'(6x,"${code} ",a,2i6,"   mosaic")') &
@@ -704,7 +740,7 @@
                     endif
                 endif
 	      enddo
-	      write(3,'(a)') 'sbatch '//outscript(1:40)
+	      write(3,'(a)') 'qsub '//outscript(1:40)
 	      close(1)
 	  endif
         enddo
