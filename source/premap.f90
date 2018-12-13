@@ -540,7 +540,6 @@
             ihi = ihi + ilostart
             jlo = jlo + jlostart
             jhi = jhi + jlostart
-                
 
             nperlist = (nsubx*nsuby)/nnodes
             if (mod((nsubx*nsuby),nnodes) /= 0) nperlist = nperlist + 1

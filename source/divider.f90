@@ -9,7 +9,7 @@
 
     real(4) minrem
     logical nofit
-    integer :: xstartprint, ystartprint
+    integer :: xstartprint, ystartprint, iend, jend
 
     nnodes = 16			! number of nodes available simultaneously
     minrem = float(nx)*ny
@@ -63,22 +63,29 @@
     jlostart = nsubymidlo - (floor(float(nsuby)/2) &
     * (ncellsbest - noverlap)) + 1
     
-    if (ilostart < 0) then
-        ilostart = ilostart + ncellsbest
+    iend = ((nsubx - 1) * (ncellsbest - noverlap)) &
+    + ncellsbest - 1 + ilostart
+    jend = ((nsuby - 1) * (ncellsbest - noverlap)) &
+    + ncellsbest - 1 + jlostart
+    
+    do while ((ilostart < 0) .OR. (iend > nx-1))
+        ilostart = ilostart + (ncellsbest - noverlap)
         nsubx = nsubx - 2
-    endif
-    if (jlostart < 0) then
-        jlostart = jlostart + ncellsbest
+        iend = ((nsubx - 1) * (ncellsbest - noverlap)) &
+        + ncellsbest - 1 + ilostart
+    end do
+    do while ((jlostart < 0) .OR. (jend > ny-1))
+        jlostart = jlostart + (ncellsbest - noverlap)
         nsuby = nsuby - 2
-    endif
+        jend = ((nsuby - 1) * (ncellsbest - noverlap)) &
+        + ncellsbest - 1 + jlostart
+    end do
     
 
     print *,'Imaging array divided into',nsubx,' subfields in x, and', &
 	nsuby,' in y,'
     print *,'with a subfield width of',ncellsbest,' pixels'
-    print *,'Actual coverage:',ilostart,&
-    (nsubx-1)*(ncellsbest-noverlap)+ncellsbest-1 + ilostart,&
-    jlostart,(nsuby-1)*(ncellsbest-noverlap)+ncellsbest-1 + jlostart
+    print *,'Actual coverage:',ilostart,iend,jlostart,jend
     print *,'Overlap =',noverlap
 
     end subroutine divider
