@@ -13,7 +13,7 @@ Parameter value            Name of variable          Description
 2. 0.25                          <betaprior>; a priori mean and sigma of beta
 40                               <ncells>   ; nominal size of subfield
 20                               <noverlap> ; size of subfield overlap
-colourcorr_beta2_scuba850.txt             <ccfile>   ; colour correction table
+Herschel.txt                     <ccfile>   ; colour correction table
 12                               <Nt>       ; number of temperatures
 7. 40.                           <temprange>; range of temperatures [K]
 5                                <nbands>   ; number of bands
