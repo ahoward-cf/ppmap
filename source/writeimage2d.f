@@ -87,6 +87,8 @@ C  Write other optional keywords to the header
      &  'coordinate increment along axis',status)
       call ftpkyf(unit,'CROTA2',crota2,6,
      &  'coordinate system rotation angle',status)
+           call ftpkyf(unit,'EQUINOX',2000,6,
+     &  'Default equinox of system - 2000',status)
 
 C  The FITS file must always be closed before exiting the program. 
 C  Any unit numbers allocated with FTGIOU must be freed with FTFIOU.
