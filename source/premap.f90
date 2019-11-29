@@ -517,35 +517,8 @@
 
         if (noverlap /= 0) then 
 	    call divider(nx,ny,ncells,ncellsbest,noverlap,nnodes, &
-                nsubx,nsuby)
-                
-            if (mod(nsubx,2) == 0) then
-            nsubx = nsubx + 1
-            endif
-            if (mod(nsuby,2) == 0) then
-            nsuby = nsuby + 1
-            endif
-            
-            nsubxmid = ceiling(nsubx / 2)
-            nsubymid = ceiling(nsuby / 2)
-            
-            nxmid = ceiling(nx / 2)
-            nymid = ceiling(ny / 2)
-            
-            nsubxmidlo = nxmid - floor(ncellsbest / 2)
-            nsubymidlo = nymid - floor(ncellsbest / 2)
-            
-            ilostart = nsubxmidlo - (floor(nsubx/2) * (ncellsbest - noverlap))
-            jlostart = nsubymidlo - (floor(nsuby/2) * (ncellsbest - noverlap))
-            
-            do while (ilostart < 0)
-            ilostart = ilostart + ncellsbest
-            nsubx = nsubx - 2
-            enddo
-            do while (jlostart < 0)
-            jlostart = jlostart + ncellsbest
-            nsuby = nsuby - 2
-            enddo
+                nsubx,nsuby,nsubxmid,nsubymid,nxmid,nymid, &
+                nsubxmidlo, nsubymidlo, ilostart, jlostart)
             
             nfields = nsubx*nsuby
             allocate (ilo(nfields))
