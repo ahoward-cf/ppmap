@@ -15,7 +15,7 @@ module load compiler/intel
 ulimit -s unlimited
 ulimit -c 0
 
-code=${HOME}/ppmap/ppmap
+code=${HOME}/ppmap/ppmap/bin
 MYPATH=/scratch/[USERNAME]
 
 NCPUS="40"

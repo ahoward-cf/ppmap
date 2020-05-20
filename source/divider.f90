@@ -11,7 +11,7 @@
     logical nofit
     integer :: xstartprint, ystartprint, iend, jend
 
-    nnodes = 16			! number of nodes available simultaneously
+    nnodes = 10			! number of nodes available simultaneously
     minrem = float(nx)*ny
     ncellsbest = ncells
     nofit = .true.
