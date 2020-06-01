@@ -15,7 +15,7 @@ You should then have the following paths:
 /home/[USERNAME]/ppmap/
 /home/[USERNAME]/ppmap/source/
 
-In /home/[USERNAME]/ppmap/ run 'sh make'. This should compile and place the ppmap and premap applications in /home/[USERNAME]/ppmap/.
+In /home/[USERNAME]/ppmap/ run 'make'. This should compile and place the ppmap and premap applications in /home/[USERNAME]/ppmap/bin/.
 
 Open /home/[USERNAME]/ppmap/run_ppmap.sh in your text editor. 
 Replace instances of [USERNAME] with your HAWK login. 
