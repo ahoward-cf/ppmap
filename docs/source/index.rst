@@ -6,7 +6,7 @@
 Welcome to PPMAP's documentation!
 =================================
 
-PPMAP is a Bayesian Point Process fitting routine for estimating the optical depth and dust properties of astrophysical objects from far-infrared and sub-millimetre observations.
+PPMAP is a Bayesian Point Process fitting routine for estimating the optical depth and dust properties of astrophysical objects from far-infrared and sub-millimetre observations. This is a test.
 
 .. toctree::
    :maxdepth: 2
