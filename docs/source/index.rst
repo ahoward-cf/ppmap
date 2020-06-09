@@ -11,6 +11,8 @@ PPMAP is a Bayesian Point Process fitting routine for estimating the optical dep
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   
+   installation
 
 
 
