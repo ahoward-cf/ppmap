@@ -2,6 +2,9 @@
 # Set shell
 SHELL:=/bin/bash
 
+# Define user config file
+USRNAME = c.c1234567
+
 # Define directories
 # Source directory
 SRCDIR = source
@@ -25,12 +28,12 @@ SRCPPFLS = matmul_omp.f90 ppmap.f90 hpcorr.f90 rchisqindcalc.f90 ppmosaic.f90 pp
 SRCPR = $(addprefix $(SRCDIR)/,$(SRCPRFLS))
 SRCPP = $(addprefix $(SRCDIR)/,$(SRCPPFLS))
 
-$(info PRsrc: $(SRCPR))
-$(info PPsrc: $(SRCPP))
+#$(info PRsrc: $(SRCPR))
+#$(info PPsrc: $(SRCPP))
 
 # Makefile
 # Build PreMAP and PPMAP
-build: $(BINDIR) $(BINDIR)/premap $(BINDIR)/ppmap
+build: $(BINDIR) $(BINDIR)/premap $(BINDIR)/ppmap $(userEdit)
 
 # Create bin directory
 $(BINDIR): 
@@ -49,6 +52,12 @@ $(BINDIR)/ppmap: $(SRCPP) $(SRCDIR)/libcfitsio.a
 	$(PURGE); \
 	$(LOAD); \
 	$(F90COMP) $(BINDIR)/ppmap $(SRCPP) -fopenmp -L$(SRCDIR) -lcfitsio
+
+# Edit Username in Shell Scripts
+userEdit:
+	. /usr/share/Modules/init/bash; \
+	sed "s+\[USERNAME\]+${USRNAME}+g" ./templates/template_run_ppmap.sh > ./run_ppmap.sh; \
+	sed "s+\[USERNAME\]+${USRNAME}+g" ./templates/template_run_[FIELD]_all > ./run_[FIELD]_all
 
 # Remove PPMAP and PreMAP
 remove: $(BINDIR)/ppmap $(BINDIR)/premap
