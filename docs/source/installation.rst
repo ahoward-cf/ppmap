@@ -18,9 +18,9 @@ To install:
 .. warning:: If the ``ppmap`` directory is located somewhere other than ``/home/[USERNAME]/``, you will need to go into the ``/ppmap/templates/`` directory and open ``template_run_ppmap.sh`` in a text editor. You will then need to edit the line ``code=`` variable from ``code=${HOME}/ppmap/bin/ppmap`` to include the directory you copied above (e.g. ``code=/home/[USERNAME]/some/other/path/ppmap/bin/ppmap``). Do not be concerned that the ``ppmap/`` directory does not contain a ``bin/`` directory yet. One will be created during the installation process.
 * Move into the ``ppmap/`` directory and run the makefile:
 
-.. code-block:: shell
+.. code-block:: console
 
-	make
+	$ make
     
 This should compile the PreMAP and PPMAP executables and place them in the ``ppmap/bin/`` directory. It should also generate the ``run_[FIELD]_all`` and ``run_ppmap.sh`` script files from the templates, configure them for your username, and place them into the ``ppmap/`` directory. 
 
