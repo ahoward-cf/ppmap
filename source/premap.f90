@@ -675,21 +675,21 @@
 	            if (index(line,'run_ppmap.log') /= 0) then
 		        write(line,'(a,"-",i2.2,".log")') fieldname,n
                         line = removeblanks(line)
-                        write(2,'(a)') '#PBS -o '//line(1:40)
+                        write(2,'(a)') '#SBATCH -o '//line(1:40)
                         isl = isl + 1
-                        scriptlines(isl,n) = '#PBS -o '//line(1:40)
+                        scriptlines(isl,n) = '#SBATCH -o '//line(1:40)
 	            else if (index(line,'run_ppmap.err') /= 0) then 
 		        write(line,'(a,"-",i2.2,".err")') fieldname,n
                         line = removeblanks(line)
-                        write(2,'(a)') '#PBS -e '//line(1:40)
+                        write(2,'(a)') '#SBATCH -e '//line(1:40)
                         isl = isl + 1
-                        scriptlines(isl,n) = '#PBS -e '//line(1:40)
-	            else if (index(line,'-N run') /= 0) then 
+                        scriptlines(isl,n) = '#SBATCH -e '//line(1:40)
+	            else if (index(line,'--job-name=run') /= 0) then 
 		        write(line,'(a,"-",i2.2)') fieldname,n
                         line = removeblanks(line)
-                        write(2,'(a)') '#PBS -N '//line(1:40)
+                        write(2,'(a)') '#SBATCH --job-name= '//line(1:40)
                         isl = isl + 1
-                        scriptlines(isl,n) = '#PBS -N '//line(1:40)
+                        scriptlines(isl,n) = '#SBATCH --job-name='//line(1:40)
 	            else if (index(line,'${code}') /= 0) then 
 		        if (isf2+1==nfields) then 
 		            write(2,'(6x,"${code} ",a,2i6,"   mosaic")') &
@@ -713,7 +713,7 @@
                     endif
                 endif
 	      enddo
-	      write(3,'(a)') 'qsub '//outscript(1:40)
+	      write(3,'(a)') 'sbatch '//outscript(1:40)
 	      close(1)
 	  endif
         enddo

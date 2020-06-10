@@ -1,6 +1,6 @@
 module purge
 module load compiler/intel
-./premap [FIELD]
+./bin/premap [FIELD]
 mkdir /scratch/[USERNAME]/[FIELD]
 cp [FIELD]/* /scratch/[USERNAME]/[FIELD]
 mkdir /scratch/[USERNAME]/[FIELD]_results
