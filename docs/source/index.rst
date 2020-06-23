@@ -8,7 +8,7 @@ Welcome to PPMAP's documentation!
 
 PPMAP is a Bayesian Point Process fitting routine for estimating the optical depth and dust properties of astrophysical objects from far-infrared and sub-millimetre observations.
 
-PPMAP was developed by `Ken Marsh <https://www.ipac.caltech.edu/science/staff/kenneth-marsh>'_.
+PPMAP was developed by `Ken Marsh <https://www.ipac.caltech.edu/science/staff/kenneth-marsh>`_.
 
 PPMAP was first described in `Marsh, et al. 2015, **MNRAS 454** <https://doi.org/10.1093/mnras/stv2248>`_.
 
@@ -19,9 +19,12 @@ PPMAP is undergoing development. If you would like to run PPMAP, please contact 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
+   
    Home <index> 
+   
 .. toctree::
    :maxdepth: 2
+   
    Installation <installation>
 
 
