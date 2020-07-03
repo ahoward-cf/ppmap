@@ -33,7 +33,7 @@ SRCPP = $(addprefix $(SRCDIR)/,$(SRCPPFLS))
 
 # Makefile
 # Build PreMAP and PPMAP
-build: $(BINDIR) $(BINDIR)/premap $(BINDIR)/ppmap $(userEdit)
+build: $(BINDIR) $(BINDIR)/premap $(BINDIR)/ppmap userEdit
 
 # Create bin directory
 $(BINDIR): 
