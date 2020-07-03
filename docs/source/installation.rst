@@ -4,7 +4,7 @@ Installation
 
 PPMAP is currently configured to run on the `Super Computing Wales Hawk Supercomputer <https://portal.supercomputing.wales/index.php/about-hawk/>`_ cluster. For details on the scheduler and compiler, see :ref:`Requirements`. The algorithm is hosted on GitHub:
 
- `https://github.com/kennethmarsh/ppmap <https://github.com/kennethmarsh/ppmap>`_
+ `https://github.com/ahoward-cf/ppmap <https://github.com/ahoward-cf/ppmap>`_
  
 ============
 Requirements
