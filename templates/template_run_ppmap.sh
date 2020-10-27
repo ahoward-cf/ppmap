@@ -10,13 +10,13 @@
 # latest intel compilers, mkl and intel-mpi
 
 module purge
-module load compiler/intel
+module load 
 
 ulimit -s unlimited
 ulimit -c 0
 
-code=${HOME}/ppmap/bin/ppmap
-MYPATH=/scratch/[USERNAME]
+code=
+MYPATH=
 
 NCPUS="40"
 

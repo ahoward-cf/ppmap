@@ -1,11 +1,11 @@
 module purge
-module load compiler/intel
-./bin/premap [FIELD]
-mkdir /scratch/[USERNAME]/[FIELD]
-cp [FIELD]/* /scratch/[USERNAME]/[FIELD]
-mkdir /scratch/[USERNAME]/[FIELD]_results
-rm /scratch/[USERNAME]/[FIELD]_results/*
-cp [FIELD]_ppmap.inp /scratch/[USERNAME]
-cp *[FIELD]*fits /scratch/[USERNAME]
-cp psf_*fits /scratch/[USERNAME]
+module load [COMPILER]
+[PPPATH] [FIELD]
+mkdir [OUTPATH]/[FIELD]
+cp [FIELD]/* [OUTPATH]/[FIELD]
+mkdir [OUTPATH]/[FIELD]_results
+rm [OUTPATH]/[FIELD]_results/*
+cp [FIELD]_ppmap.inp [OUTPATH]
+cp *[FIELD]*fits [OUTPATH]
+cp psf_*fits [OUTPATH]
 sh run_[FIELD]

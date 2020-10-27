@@ -1,0 +1,37 @@
+#! /bin/bash
+
+. ./config.cfg
+
+## EDIT THE SHELL SCRIPT TEMPLATE
+# First edit paths (need to do this before USERNAME gets altered)
+cp ./templates/template_run_ppmap.sh ./run_ppmap.sh
+sed -i "s+code=+code=$PPPATH+g" ./run_ppmap.sh
+sed -i "s+MYPATH=+MYPATH=$OUTPATH+g" ./run_ppmap.sh
+
+# Then edit USERNAME everywhere
+sed -i "s+\[USERNAME\]+$USERNAME+g" ./run_ppmap.sh
+
+# Finally edit load command for intel compiler
+sed -i "s+module load +module load $COMPILER+g" ./run_ppmap.sh
+
+## EDIT THE RUN_[FIELD]_ALL TEMPLATE
+# First edit the username field
+cp ./templates/template_run_[FIELD]_all ./run_[FIELD]_all
+sed -i "s+\[PPPATH\]+$PPPATH+g" ./run_[FIELD]_all
+sed -i "s+\[OUTPATH\]+$OUTPATH+g" ./run_[FIELD]_all
+
+# Then edit USERNAME everywhere
+sed -i "s+\[USERNAME\]+$USERNAME+g" ./run_[FIELD]_all
+
+# Finally edit the compiler
+sed -i "s+\[COMPILER\]+$COMPILER+g" ./run_[FIELD]_all
+
+#Check if SLURM or PBS
+
+if [[ "${SCHED^^}"  ==  "PBS" ]]; then
+    echo "PBS Setup Specified"
+elif [[ "${SCHED^^}" == "SLURM" ]]; then
+    echo "SLURM Setup Specified"
+else
+   echo "Unknown cluster scheduler specified in config.cfg"
+fi

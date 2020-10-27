@@ -7,13 +7,14 @@ USRNAME = c.c1234567
 
 # Define directories
 # Source directory
-SRCDIR = source
+SRCDIR = src
 # Install directory
 BINDIR = bin
 
 # Define compiler load commands
 PURGE = module purge
-LOAD  = module load compiler/intel
+COMPILER = $(shell sed -n -e "s+COMPILER=++p" ./config.cfg)
+LOAD  = module load $(COMPILER)
 
 # Define compiler
 F90COMP = ifort -O3 -o
@@ -37,27 +38,31 @@ build: $(BINDIR) $(BINDIR)/premap $(BINDIR)/ppmap userEdit
 
 # Create bin directory
 $(BINDIR): 
-	mkdir $@
+	@mkdir $@
+	echo "Making the bin directory: $(BINDIR)"
 
 # Compile PreMAP
 $(BINDIR)/premap: $(SRCPR) $(SRCDIR)/libcfitsio.a
-	. /usr/share/Modules/init/bash; \
+	@. /usr/share/Modules/init/bash; \
+	echo "Compiling Premap in $(BINDIR)"
 	$(PURGE); \
 	$(LOAD); \
 	$(F90COMP) $(BINDIR)/premap $(SRCPR) -fopenmp -L$(SRCDIR) -lcfitsio
 
 # Compile PPMAP
 $(BINDIR)/ppmap: $(SRCPP) $(SRCDIR)/libcfitsio.a
-	. /usr/share/Modules/init/bash; \
+	@. /usr/share/Modules/init/bash; \
+	echo "Compiling PPMAP in $(BINDIR)"
 	$(PURGE); \
 	$(LOAD); \
 	$(F90COMP) $(BINDIR)/ppmap $(SRCPP) -fopenmp -L$(SRCDIR) -lcfitsio
 
 # Edit Username in Shell Scripts
 userEdit:
-	. /usr/share/Modules/init/bash; \
-	sed "s+\[USERNAME\]+${USRNAME}+g" ./templates/template_run_ppmap.sh > ./run_ppmap.sh; \
-	sed "s+\[USERNAME\]+${USRNAME}+g" ./templates/template_run_[FIELD]_all > ./run_[FIELD]_all
+	@. /usr/share/Modules/init/bash; \
+	echo "Editing the template files with config options"
+	chmod -x ./etc/editTemplates;\
+	sh ./etc/editTemplates
 
 # Remove PPMAP and PreMAP
 remove: $(BINDIR)/ppmap $(BINDIR)/premap
