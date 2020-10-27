@@ -1,11 +1,11 @@
 module purge
 module load [COMPILER]
-[PPPATH] [FIELD]
+[BINPATH]/premap [FIELD]
 mkdir [OUTPATH]/[FIELD]
 cp [FIELD]/* [OUTPATH]/[FIELD]
 mkdir [OUTPATH]/[FIELD]_results
 rm [OUTPATH]/[FIELD]_results/*
-cp [FIELD]_ppmap.inp [OUTPATH]
+cp [FIELD]*.inp [OUTPATH]
 cp *[FIELD]*fits [OUTPATH]
 cp psf_*fits [OUTPATH]
 sh run_[FIELD]

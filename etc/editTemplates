@@ -17,7 +17,7 @@ sed -i "s+module load +module load $COMPILER+g" ./run_ppmap.sh
 ## EDIT THE RUN_[FIELD]_ALL TEMPLATE
 # First edit the username field
 cp ./templates/template_run_[FIELD]_all ./run_[FIELD]_all
-sed -i "s+\[PPPATH\]+$PPPATH+g" ./run_[FIELD]_all
+sed -i "s+\[BINPATH\]+$BINPATH+g" ./run_[FIELD]_all
 sed -i "s+\[OUTPATH\]+$OUTPATH+g" ./run_[FIELD]_all
 
 # Then edit USERNAME everywhere
