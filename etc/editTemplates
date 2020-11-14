@@ -2,6 +2,23 @@
 
 . ./config.cfg
 
+## CONFIGURE FOR SLURM/PBS
+# First check for scheduler, then copy appropriate files
+if [[ "${SCHED^^}"  ==  "PBS" ]]; then
+    echo "PBS Setup Specified"
+    echo "Reconfiguring PPMAP for PBS"
+    cp ./templates/template_premap_PBS.f90 ./src/premap.f90
+    cp ./templates/template_run_ppmap_PBS.sh ./templates/template_run_ppmap.sh
+    sed -i "s+\[JOBID\]+$JOBID+g" ./templates/template_run_ppmap.sh 
+elif [[ "${SCHED^^}" == "SLURM" ]]; then
+    echo "SLURM Setup Specified"
+    echo "Reconfiguring PPMAP for SLURM"
+    cp ./templates/template_premap_SLURM.f90 ./src/premap.f90
+    cp ./templates/template_run_ppmap_SLURM.sh ./templates/template_run_ppmap.sh
+else
+   echo "Unknown cluster scheduler specified in config.cfg"
+fi
+
 ## EDIT THE SHELL SCRIPT TEMPLATE
 # First edit paths (need to do this before USERNAME gets altered)
 cp ./templates/template_run_ppmap.sh ./run_ppmap.sh
@@ -25,13 +42,3 @@ sed -i "s+\[USERNAME\]+$USERNAME+g" ./run_[FIELD]_all
 
 # Finally edit the compiler
 sed -i "s+\[COMPILER\]+$COMPILER+g" ./run_[FIELD]_all
-
-#Check if SLURM or PBS
-
-if [[ "${SCHED^^}"  ==  "PBS" ]]; then
-    echo "PBS Setup Specified"
-elif [[ "${SCHED^^}" == "SLURM" ]]; then
-    echo "SLURM Setup Specified"
-else
-   echo "Unknown cluster scheduler specified in config.cfg"
-fi
